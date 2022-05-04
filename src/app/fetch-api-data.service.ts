@@ -39,9 +39,9 @@ export class FetchApiDataService {
     );
   }
   //Get one movie
-  getMovieByName(): Observable<any> {
+  getMovieByName(title: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/:Title', {
+    return this.http.get(apiUrl + `movies/${title}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
       })
@@ -51,9 +51,9 @@ export class FetchApiDataService {
     );
   }
   //Get Director info
-  getDirectorByName(): Observable<any> {
+  getDirectorByName(name: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'directors/:Name', {
+    return this.http.get(apiUrl + `directors/${name}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
       })
@@ -63,9 +63,9 @@ export class FetchApiDataService {
     );
   }
   //Get Genre info
-  getGenreByName(): Observable<any> {
+  getGenreByName(name: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'genres/:Name', {
+    return this.http.get(apiUrl + `genre/${name}`, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token
       })
