@@ -1,0 +1,89 @@
+.user-info{
+    padding-left: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+.moviebox{
+    padding-left: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+.profile-body{
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 40px;
+    height: 100%;
+}
+.favorite-movies-header {
+    color: white;
+    margin-top: 25px;
+}
+.favorite-movies-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.favorite-movies {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color:white;
+    max-width: 280px;
+    width: 280px;
+    margin: 15px;
+    padding: 20px 10px;
+}
+
+.favorite-movies-title-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.favorite-movies-title {
+    display: flex;
+    max-width: 210px;
+    justify-content: center;
+    text-align: center;
+    line-height: normal;
+}
+
+.mat-card-subtitle {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+img {
+    width: 250px;
+    height: 350px;
+    object-fit: contain;
+}
+
+.mat-icon-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.mat-card-actions{
+    margin-bottom: -8px;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+

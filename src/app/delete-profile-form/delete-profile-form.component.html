@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Delete profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <h4>Are you sure you want to delete your profile? </h4>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button class="delete-button" (click)="deleteUserProfile()"> Yes
+        </button>
+        <button mat-raised-button class="no-delete-button" (click)="closeDialog()"> No
+        </button>
+    </mat-card-actions>
+</mat-card>

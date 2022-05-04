@@ -1,0 +1,25 @@
+.navbar {
+    display: flex;
+    box-sizing: border-box;
+    padding: 30px 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+    justify-content: space-between;
+    background-color: #845EC2;
+}
+
+img {
+    height: 50px;
+}
+
+button {
+    color: white;
+}
+
+.logout-button {
+    background-color: #0045A1;
+    margin-left: 10px;
+    box-shadow: 3px 3px black;
+}

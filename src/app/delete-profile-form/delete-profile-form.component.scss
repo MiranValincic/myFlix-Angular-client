@@ -1,0 +1,31 @@
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid;
+    border-width: 3px;
+    border-color: black;
+    padding: 35px;
+}
+
+.mat-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.mat-card-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-button {
+    background-color: #CE2A38;
+    color: white;
+}
+
+.no-delete-button {
+    background-color: #0045A1;
+    color: white;
+}

@@ -1,0 +1,36 @@
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid;
+    border-width: 3px;
+    border-color: black;
+    padding: 45px;
+}
+
+.mat-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-card-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.save-button {
+    background-color: #0045A1;
+    color: white;
+}
+
+.close-button {
+    background-color: gray;
+    color: white;
+}

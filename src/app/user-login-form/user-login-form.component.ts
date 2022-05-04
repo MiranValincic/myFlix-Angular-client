@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserLoginFormComponent implements OnInit {
 
-  @Input() userCredentials = { Username: '', Password: ''};
+  @Input() userCredentials = { Name: '', Password: ''};
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -27,18 +27,20 @@ ngOnInit(): void {
 // This is the function responsible for sending the form inputs to the backend
 loginUser(): void {
     this.fetchApiData.userLogin(this.userCredentials).subscribe((response) => {
-      localStorage.setItem('user', response.user.Username);
+      localStorage.setItem('user', response.user.Name);
       localStorage.setItem('token', response.token);
      this.dialogRef.close();
      console.log(response);
      this.snackBar.open('You have logged in!', 'OK', {
         duration: 2000
      });
+     this.router.navigate(['movies']);
     }, (response) => {
       console.log(response);
       this.snackBar.open(response, 'OK', {
         duration: 2000
       });
+      this.router.navigate(['movies']);
     });
   }
 

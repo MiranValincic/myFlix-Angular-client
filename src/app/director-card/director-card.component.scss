@@ -1,0 +1,21 @@
+.mat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid;
+    border-width: 2px;
+    border-color: gray;
+    padding: 20px;
+}
+
+.mat-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.director-close-button {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
