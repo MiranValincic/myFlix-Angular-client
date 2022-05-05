@@ -31,19 +31,28 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
-    
     // this.getfavMovies()
     this.getUser();
     this.getFavs()  
   }
-  
+
+  /**
+   * open Synopsis dialog
+   * @param title 
+   * @param description 
+   */
   openSynopsis(title: string, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       panelClass: "custom-dialog-container",
       data: { title, description },
     });
   }
-  // open Director dialog
+  /**
+   * open Director dialog
+   * @param name 
+   * @param bio 
+   * @param born
+   */
   openDirectorDialog(name: string, bio: string, born: Date): void {
     this.dialog.open(DirectorCardComponent, {
       panelClass: "custom-dialog-container",
@@ -51,7 +60,11 @@ export class UserProfileComponent implements OnInit {
       width: "500px",
     });
   }
-  // Open Genre View
+  /**
+   * open Genre dialog
+   * @param name 
+   * @param description 
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       panelClass: "custom-dialog-container",
@@ -60,6 +73,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+   /**
+   * calls API endpoint to get user info
+   * @function getUser
+   * @return user data in JSON format
+   */
   getUser(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -68,13 +86,19 @@ export class UserProfileComponent implements OnInit {
       });
     }
   }
-  
+  /**
+   * dialog to edit user information
+   */
   openEditUserProfile(): void {
     this.dialog.open(EditProfileFormComponent, {
       width: '500px'
     });
   }
-  
+
+  /**
+ * function to let the user display their favorited movies 
+ * @function getAllMovies
+ */  
   getFavs(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -86,10 +110,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
   
-         
-
-  //Delete User account
- 
+  /**
+   * dialog to delete user
+   */
   deleteUserProfile(): void {
     if (confirm('Are you sure? This cannot be undone.')) {
       this.router.navigate(['welcome']).then(() => {
@@ -102,6 +125,13 @@ export class UserProfileComponent implements OnInit {
     }
   
   }
+  /**
+   * function to let the user remove a movie from their favorited movies
+   * @function removeFavMovie
+   * @param MovieID 
+   * @param Title 
+   * @returns updated user data in JSON format
+   */
   removeFavMovie(MovieID: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(MovieID).subscribe((resp) => {
       this.snackBar.open(

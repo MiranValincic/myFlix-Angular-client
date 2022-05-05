@@ -32,6 +32,11 @@ export class MovieCardComponent {
     this.showFavMovie();
   }
 
+   /**
+   * function to show all movies
+   * @function getAllMovies
+   * @returns movies in JSON format
+   */
   //Get all movies
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -39,7 +44,9 @@ export class MovieCardComponent {
       return this.movies;
     });
   }
-  // Pull favorite movies
+    /**
+   * function to pull all favorited movies of a user.
+   */
   showFavMovie(): void {
     const user = localStorage.getItem("user");
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
@@ -47,7 +54,11 @@ export class MovieCardComponent {
       return this.FavMovie;
     });
   }
-  // open Director dialog
+  /**
+   * open Director dialog
+   * @param name 
+   * @param bio 
+   */
   openDirectorDialog(name: string, bio: string, born: Date): void {
     this.dialog.open(DirectorCardComponent, {
       panelClass: "custom-dialog-container",
@@ -55,7 +66,12 @@ export class MovieCardComponent {
       width: "500px",
     });
   }
-  // Open Genre View
+  
+    /**
+   * open Genre dialog
+   * @param name 
+   * @param description 
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       panelClass: "custom-dialog-container",
@@ -63,6 +79,12 @@ export class MovieCardComponent {
       width: "500px",
     });
   }
+
+   /**
+   * open Synopsis dialog
+   * @param title 
+   * @param description 
+   */
   openSynopsis(title: string, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       panelClass: "custom-dialog-container",
@@ -75,6 +97,14 @@ export class MovieCardComponent {
 
     });
   }
+
+   /**
+   * function to let user add a movie to their favorite movies
+   * @function addToUserFavs
+   * @param id 
+   * @param Title 
+   * @returns movie object array in JSON format
+   */
   addToUserFavs(id: string, Title: string): void {
     console.log(id);
     const token = localStorage.getItem("token");
@@ -86,6 +116,14 @@ export class MovieCardComponent {
       this.showFavMovie();
     });
   }
+
+   /**
+   * function to let user remove a movie from their favorite movies
+   * @function deleteFavs
+   * @param MovieID 
+   * @param Title 
+   * @returns updated users' fav movies in JSON format
+   */
   deleteFavs(MovieID: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(MovieID).subscribe((resp: any) => {
       this.snackBar.open(`${Title} is no longer favorited.`, 'OK', {
@@ -95,10 +133,22 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * function to check if a movie is favorited
+   * @param MovieID 
+   * @returns boolean true or false
+   */
   isFav(MovieID: string): boolean {
     return this.FavMovie.some((id) => id === MovieID);
   }
 
+  /**
+   * function to toggle favorited status
+   * @function addToUserFavs or 
+   * @function deleteFavs
+   * depending on fav status
+   * @param movie 
+   */
   setFavStatus(movie: any): void {
     this.isFav(movie._id)
       ? this.deleteFavs(movie._id, movie.Title)

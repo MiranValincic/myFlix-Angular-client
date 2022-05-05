@@ -13,6 +13,10 @@ export class EditProfileFormComponent implements OnInit {
   Name = localStorage.getItem('user');
   user: any = {};
 
+  /**
+   * input values bound to userData
+   */
+
   @Input() userData = { 
     Username: this.user.Name,
     Password: this.user.Password,
@@ -31,6 +35,11 @@ export class EditProfileFormComponent implements OnInit {
     this.getUser();
   }
 
+   /**
+   * function to get user info
+   * @function getUser
+   * @returns user info
+   */
   getUser(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
@@ -40,6 +49,12 @@ export class EditProfileFormComponent implements OnInit {
     });
   }
 
+   /**
+   * function to edit user profile
+   * @function editUserProfile
+   * @param userData
+   * @returns updated user info in JSON format + storage in localStorage
+   */
   editUserProfile(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
       this.dialogRef.close();

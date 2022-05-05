@@ -11,7 +11,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-login-form.component.scss']
 })
 export class UserLoginFormComponent implements OnInit {
-
+   /**
+   * store input value in userData
+   */
   @Input() userCredentials = { Name: '', Password: ''};
 
   constructor(
@@ -24,7 +26,11 @@ export class UserLoginFormComponent implements OnInit {
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+  /**
+   * function responsible for sending form inputs to backend
+   * @function loginUser
+   * @return user data in JSON format
+   */
 loginUser(): void {
     this.fetchApiData.userLogin(this.userCredentials).subscribe((response) => {
       localStorage.setItem('user', response.user.Name);
