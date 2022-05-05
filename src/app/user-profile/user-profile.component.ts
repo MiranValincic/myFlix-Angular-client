@@ -65,7 +65,6 @@ export class UserProfileComponent implements OnInit {
     if (user) {
       this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
         this.user = resp;
-        console.log(this.user);
       });
     }
   }
@@ -85,7 +84,6 @@ export class UserProfileComponent implements OnInit {
         }
       });
     });
-    console.log(this.favMovie);
   }
   
          
@@ -106,7 +104,6 @@ export class UserProfileComponent implements OnInit {
   }
   removeFavMovie(MovieID: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(MovieID).subscribe((resp) => {
-      console.log(resp);
       this.snackBar.open(
         `${Title} is no longer favorited`,
         'OK',

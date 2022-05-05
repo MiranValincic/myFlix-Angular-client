@@ -21,6 +21,7 @@ h1 {
 .div-buttons {
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 button {
@@ -60,3 +61,19 @@ button {
 .login-button:focus {
     background-color: #2DA693;
 }
+
+@media screen and (max-width: 600px) {
+    .register-button {
+       margin-left: 25%;
+       margin-bottom: 10px;
+    }
+    .login-button {
+        margin-left: 25%;
+    }
+    h1 {
+        font-size: 50px;
+        line-height: 70px;
+        margin-bottom: 25px;
+        margin-top: 10%;
+    }
+  }

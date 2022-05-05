@@ -60,3 +60,9 @@ img {
     display: flex;
     justify-content: space-evenly;
 }
+
+@media screen and (max-width: 300px) {
+    .movie-view {
+        width: 350px;
+    }
+}

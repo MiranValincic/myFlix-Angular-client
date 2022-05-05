@@ -72,11 +72,7 @@ export class MovieCardComponent {
   getCurrentUser(): void {
     const username = localStorage.getItem("user");
     this.fetchApiData.getUserProfile(username).subscribe((resp: any) => {
-      console.log(resp);
-      const currentUser = resp.Name;
-      console.log(currentUser);
-      const currentFavs = resp.FavouriteMovies;
-      console.log(currentFavs);
+
     });
   }
   addToUserFavs(id: string, Title: string): void {
@@ -84,7 +80,6 @@ export class MovieCardComponent {
     const token = localStorage.getItem("token");
     console.log(token);
     this.fetchApiData.addFavoriteMovies(id).subscribe((response: any) => {
-      console.log(response);
       this.snackBar.open(`${Title} has been added to your favorites.`, 'OK', {
         duration: 3000,
       });
@@ -93,7 +88,6 @@ export class MovieCardComponent {
   }
   deleteFavs(MovieID: string, Title: string): void {
     this.fetchApiData.deleteFavoriteMovies(MovieID).subscribe((resp: any) => {
-      console.log(resp);
       this.snackBar.open(`${Title} is no longer favorited.`, 'OK', {
         duration: 3000,
       });
@@ -102,8 +96,6 @@ export class MovieCardComponent {
   }
 
   isFav(MovieID: string): boolean {
-    console.log(MovieID);
-    console.log('Favmovie list', this.FavMovie);
     return this.FavMovie.some((id) => id === MovieID);
   }
 

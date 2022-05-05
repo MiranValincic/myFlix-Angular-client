@@ -28,7 +28,7 @@
             There are no movies saved to your list.
         </p>
         <mat-card *ngFor="let movie of favMovie; let i = index" class="favorite-movies">
-            <mat-dialog-content>
+            <mat-dialog-content class="content">
                 <mat-card-header class="favorite-movies-title-header">
                     <mat-card-title class="favorite-movies-title">{{ movie.Title }}</mat-card-title>
                 </mat-card-header>
