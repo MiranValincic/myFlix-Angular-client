@@ -48,6 +48,12 @@ export class EditProfileFormComponent implements OnInit {
       return this.user
     });
   }
+
+  onMissingData() {
+    this.snackBar.open('Your profile was not updated.', 'OK', {
+      duration: 4000
+    });
+  }
   
 
    /**
@@ -56,42 +62,35 @@ export class EditProfileFormComponent implements OnInit {
    * @param userData
    * @returns updated user info in JSON format + storage in localStorage
    */
-  editUser(): void {
-    let valueCheckName = false;
-    let valueCheckPassword = false;
-    let valueCheck = false;
-    Object.values(this.userData).forEach(element => {
-      if (element !== undefined ){
-        valueCheck = true;
-      }
+  editUser() {
+     console.log(this.userData)
+     console.log(Object.values(this.userData))
+    if(!Object.values(this.userData).some(element => element)){
+     this.onMissingData();
+      return;
+    }
+    if(this.userData.Name && this.userData.Name.length <2) {
+      this.onMissingData();
+      return
+    }
+   if(this.userData.Password && this.userData.Password.length <8 ) {
+     this.onMissingData();
+     return
+   }
+    this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
+      this.dialogRef.close();
+      // update profile in localstorage
+  localStorage.setItem('Name', this.userData.Name);
+  localStorage.setItem('Password', this.userData.Password);
+  localStorage.setItem('Email', this.userData.Email);
+  localStorage.setItem('Born', this.userData.Birthday);
+    this.snackBar.open('Your profile was updated successfully.', 'OK', {
+      duration: 4000
     });
-    if(Object.values(this.userData.Name).length >1 || Object.values(this.userData.Name) === undefined ) {
-      valueCheckName = true;
-    }
-    if(Object.values(this.userData.Password).length >7 || Object.values(this.userData.Password) === undefined) {
-      valueCheckPassword = true;
-    }
-
-    if(valueCheckName && valueCheckPassword && valueCheck){
-      this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
-        this.dialogRef.close();
-        // update profile in localstorage
-      localStorage.setItem('Name', this.userData.Name);
-      localStorage.setItem('Password', this.userData.Password);
-      localStorage.setItem('Email', this.userData.Email);
-      localStorage.setItem('Born', this.userData.Birthday);
-        this.snackBar.open('Your profile was updated successfully.', 'OK', {
-          duration: 4000
-        });
-        // setTimeout(() => {
-        //   window.location.reload();
-        // });
-      });
-    }else{
-      this.snackBar.open('Your profile was not updated.', 'OK', {
-        duration: 4000
-      });
-    }
+    // setTimeout(() => {
+      //   window.location.reload();
+      // });
+    });
 
   }
   closeDialog(): void {
