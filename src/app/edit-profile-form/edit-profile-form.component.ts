@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -47,6 +48,7 @@ export class EditProfileFormComponent implements OnInit {
       return this.user
     });
   }
+  
 
    /**
    * function to edit user profile
@@ -55,13 +57,22 @@ export class EditProfileFormComponent implements OnInit {
    * @returns updated user info in JSON format + storage in localStorage
    */
   editUser(): void {
-    let valueCheck = false
+    let valueCheckName = false;
+    let valueCheckPassword = false;
+    let valueCheck = false;
     Object.values(this.userData).forEach(element => {
-      if (element !== undefined){
+      if (element !== undefined ){
         valueCheck = true;
       }
     });
-    if(valueCheck){
+    if(Object.values(this.userData.Name).length >1 || Object.values(this.userData.Name) === undefined ) {
+      valueCheckName = true;
+    }
+    if(Object.values(this.userData.Password).length >7 || Object.values(this.userData.Password) === undefined) {
+      valueCheckPassword = true;
+    }
+
+    if(valueCheckName && valueCheckPassword && valueCheck){
       this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
         this.dialogRef.close();
         // update profile in localstorage
@@ -72,9 +83,9 @@ export class EditProfileFormComponent implements OnInit {
         this.snackBar.open('Your profile was updated successfully.', 'OK', {
           duration: 4000
         });
-        setTimeout(() => {
-          window.location.reload();
-        });
+        // setTimeout(() => {
+        //   window.location.reload();
+        // });
       });
     }else{
       this.snackBar.open('Your profile was not updated.', 'OK', {
