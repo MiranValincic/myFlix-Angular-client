@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -10,7 +10,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   styleUrls: ['./edit-profile-form.component.scss']
 })
 export class EditProfileFormComponent implements OnInit {
-  Name = localStorage.getItem('user');
+  Username= localStorage.getItem('user');
   user: any = {};
 
   /**
@@ -21,7 +21,7 @@ export class EditProfileFormComponent implements OnInit {
     Username: this.user.Name,
     Password: this.user.Password,
     Email: this.user.Email,
-    Birthday: this.user.Birthday
+    Birthday: this.user.Born
   }
 
   constructor(
@@ -44,7 +44,6 @@ export class EditProfileFormComponent implements OnInit {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUserProfile(user).subscribe((resp: any) => {
       this.user = resp;
-      console.log(this.user);
       return this.user
     });
   }
@@ -55,12 +54,17 @@ export class EditProfileFormComponent implements OnInit {
    * @param userData
    * @returns updated user info in JSON format + storage in localStorage
    */
-  editUserProfile(): void {
+  editUser(): void {
+    console.log(this.userData)
     this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
       this.dialogRef.close();
-      localStorage.setItem('user', resp.Username);
+      // update profile in localstorage
+      localStorage.setItem('Name', this.userData.Username);
+      localStorage.setItem('Password', this.userData.Password);
+      localStorage.setItem('Email', this.userData.Email);
+      localStorage.setItem('Born', this.userData.Birthday);
       this.snackBar.open('Your profile was updated successfully.', 'OK', {
-        duration: 2000
+        duration: 10000
       });
       setTimeout(() => {
         window.location.reload();
