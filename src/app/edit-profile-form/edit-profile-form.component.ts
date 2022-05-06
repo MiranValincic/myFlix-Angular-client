@@ -18,7 +18,7 @@ export class EditProfileFormComponent implements OnInit {
    */
 
   @Input() userData = { 
-    Username: this.user.Name,
+    Name: this.user.Name,
     Password: this.user.Password,
     Email: this.user.Email,
     Birthday: this.user.Born
@@ -55,21 +55,33 @@ export class EditProfileFormComponent implements OnInit {
    * @returns updated user info in JSON format + storage in localStorage
    */
   editUser(): void {
-    console.log(this.userData)
-    this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
-      this.dialogRef.close();
-      // update profile in localstorage
-      localStorage.setItem('Name', this.userData.Username);
+    let valueCheck = false
+    Object.values(this.userData).forEach(element => {
+      if (element !== undefined){
+        valueCheck = true;
+      }
+    });
+    if(valueCheck){
+      this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
+        this.dialogRef.close();
+        // update profile in localstorage
+      localStorage.setItem('Name', this.userData.Name);
       localStorage.setItem('Password', this.userData.Password);
       localStorage.setItem('Email', this.userData.Email);
       localStorage.setItem('Born', this.userData.Birthday);
-      this.snackBar.open('Your profile was updated successfully.', 'OK', {
-        duration: 10000
+        this.snackBar.open('Your profile was updated successfully.', 'OK', {
+          duration: 4000
+        });
+        // setTimeout(() => {
+        //   window.location.reload();
+        // });
       });
-      setTimeout(() => {
-        window.location.reload();
+    }else{
+      this.snackBar.open('Your profile was not updated.', 'OK', {
+        duration: 4000
       });
-    });
+    }
+
   }
   closeDialog(): void {
     this.dialogRef.close();

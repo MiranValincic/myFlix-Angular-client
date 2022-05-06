@@ -15,14 +15,12 @@ export class FetchApiDataService {
   }
  // Making the api call for the user registration endpoint
   public userRegistration(userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
     catchError(this.handleError)
     );
   }
   //user Login endpoint
   public userLogin( userDetails: any): Observable<any> {
-    console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails).pipe(
       catchError(this.handleError)
     );
@@ -111,14 +109,17 @@ export class FetchApiDataService {
   //Edit user's profile info
   editUserProfile(userData: object): Observable<any> {
     const token = localStorage.getItem('token');
-    const Name = localStorage.getItem('Name');
-    return this.http.put(apiUrl + `users/${Name}`, userData, {
+    const Name = localStorage.getItem('user');
+   
+   
+      return this.http.put(apiUrl + `users/${Name}`, userData, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
       })
       .pipe(map(this.extractResponseData),
       catchError(this.handleError));
+   
   }
   //Remove user's profile
   deleteUserProfile(): Observable<any> {
@@ -152,6 +153,7 @@ private extractResponseData(res: any): any {
 }
 
 private handleError(error: HttpErrorResponse): any {
+  console.log("puši tomo")
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
     } else {
