@@ -44,7 +44,6 @@ loginUser(): void {
       this.snackBar.open(response, 'OK', {
         duration: 2000
       });
-      this.router.navigate(['movies']);
     });
   }
 
