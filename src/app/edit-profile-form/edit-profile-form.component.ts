@@ -72,9 +72,9 @@ export class EditProfileFormComponent implements OnInit {
         this.snackBar.open('Your profile was updated successfully.', 'OK', {
           duration: 4000
         });
-        // setTimeout(() => {
-        //   window.location.reload();
-        // });
+        setTimeout(() => {
+          window.location.reload();
+        });
       });
     }else{
       this.snackBar.open('Your profile was not updated.', 'OK', {

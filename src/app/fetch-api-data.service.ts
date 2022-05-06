@@ -153,7 +153,6 @@ private extractResponseData(res: any): any {
 }
 
 private handleError(error: HttpErrorResponse): any {
-  console.log("puši tomo")
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
     } else {
