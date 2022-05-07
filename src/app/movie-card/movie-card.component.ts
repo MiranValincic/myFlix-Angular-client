@@ -14,7 +14,7 @@ import { SynopsisCardComponent } from "../synopsis-card/synopsis-card.component"
 })
 export class MovieCardComponent {
   user: any = {};
-  Username = localStorage.getItem("user");
+  Name = localStorage.getItem("user");
   movies: any[] = [];
   currentUser: any = null;
   FavMovie: any[] = [];

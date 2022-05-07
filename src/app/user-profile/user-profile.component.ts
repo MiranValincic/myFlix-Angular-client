@@ -17,7 +17,7 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
 export class UserProfileComponent implements OnInit {
   user: any = {};
   movies: any[] = [];
-  userName: any = localStorage.getItem('user');
+  Name: any = localStorage.getItem('user');
   favs: any = null;
   favMovie: any[] = [];
   displayElement: boolean = false

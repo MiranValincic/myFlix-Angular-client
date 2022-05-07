@@ -107,12 +107,12 @@ export class FetchApiDataService {
   /**
  * calls API endpooint to get a users' data 
  * @function getUserProfile
- * @param username 
+ * @param Name 
  * @returns user data in JSON format
  */
-  getUserProfile(username: any): Observable<any> {
+  getUserProfile(Name: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + `users/${username}`, {
+    return this.http.get(apiUrl + `users/${Name}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -123,12 +123,12 @@ export class FetchApiDataService {
   /**
  * calls API endpoint to get the favorite movie list of a user
  * @function getFavoriteMovies
- * @param username
+ * @param Name
  * @returns a list of the users' favorite movies in JSON format
  */
-  getFavoriteMovies(username: any): Observable<any> {
+  getFavoriteMovies(Name: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + `users/${username}`, {
+    return this.http.get(apiUrl + `users/${Name}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -144,8 +144,8 @@ export class FetchApiDataService {
  */
   addFavoriteMovies(MovieID: any): Observable<any> {
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('user');
-    return this.http.post(apiUrl + `users/${username}/favorites/${MovieID}`, null, {
+    const Name = localStorage.getItem('user');
+    return this.http.post(apiUrl + `users/${Name}/favorites/${MovieID}`, null, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
