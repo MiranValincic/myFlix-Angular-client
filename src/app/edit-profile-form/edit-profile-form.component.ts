@@ -48,7 +48,11 @@ export class EditProfileFormComponent implements OnInit {
       return this.user;
     });
   }
-
+  /**
+   * function to send an error if profile was not updated
+   * @function onMissingData
+   * @returns message that profile was not updated
+   */
   onMissingData() {
     this.snackBar.open("Your profile was not updated.", "OK", {
       duration: 4000,
