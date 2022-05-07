@@ -66,7 +66,6 @@ export class EditProfileFormComponent implements OnInit {
    * @returns updated user info in JSON format + storage in localStorage
    */
   editUser() {
-    console.log(this.userData);
     console.log(Object.values(this.userData));
     if (!Object.values(this.userData).some((element) => element)) {
       this.onMissingData();
@@ -76,6 +75,7 @@ export class EditProfileFormComponent implements OnInit {
       this.onMissingData();
       return;
     }
+  
     if (this.userData.Password && this.userData.Password.length < 8) {
       this.onMissingData();
       return;
@@ -83,10 +83,7 @@ export class EditProfileFormComponent implements OnInit {
     this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
       this.dialogRef.close();
       // update profile in localstorage
-      localStorage.setItem("user", this.userData.Name);
-      localStorage.setItem("Password", this.userData.Password);
-      localStorage.setItem("Email", this.userData.Email);
-      localStorage.setItem("Born", this.userData.Birthday);
+      localStorage.setItem('user', resp.Name)
       this.snackBar.open("Your profile was updated successfully.", "OK", {
         duration: 4000,
       });
